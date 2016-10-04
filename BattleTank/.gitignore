@@ -3,7 +3,7 @@
 *.VC.db
 
 #Starter Content
-/StarterContent
+*/StarterContent
 
 # Compiled Object files
 *.slo
