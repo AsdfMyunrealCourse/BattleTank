@@ -13,7 +13,6 @@ class BATTLETANK_API ATank : public APawn
 {
 	GENERATED_BODY()
 public:
-	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BluePrintCallable, Category= Setup)
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
@@ -21,6 +20,10 @@ public:
 	UFUNCTION(BluePrintCallable, Category = Setup)
 	void SetTurretReference(UTankTurret* TurretToSet);
 
+	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BluePrintCallable, Category= Firing)
+		void Fire();
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 private:
@@ -34,6 +37,6 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 100000; //TODO find sensible starting speed
+		float LaunchSpeed = 100000; 
 		
 };
