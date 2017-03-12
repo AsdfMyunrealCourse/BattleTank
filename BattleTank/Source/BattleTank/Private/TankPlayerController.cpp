@@ -16,16 +16,6 @@ void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("PlayerController Begin Play"))
-		auto ControlledTank = GetControlledTank();
-	if(!ControlledTank)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController not posessing a tank"))
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController posessing : %s"), *ControlledTank->GetName())
-	}
 }
 //Get world location of linetrace through crosshair, true if hits landscape
 bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
