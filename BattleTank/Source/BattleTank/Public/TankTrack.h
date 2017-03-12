@@ -18,5 +18,7 @@ public:
 	UFUNCTION(BluePrintCallable, Category = Input)
 		void SetThrottle(float Throttle);
 	
-	//TODO clamp actual throttle value
+	//Max force per track in newtons
+	UPROPERTY(EditDefaultsOnly, Category = Movement)
+		float TrackMaxDrivingForce = 400000; //Assume 40t tank and 1g acceleration
 };
