@@ -31,7 +31,6 @@ void ATank::BeginPlay()
 void ATank::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
-
 }
 
 void ATank::AimAt(FVector HitLocation)
