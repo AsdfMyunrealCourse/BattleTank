@@ -29,6 +29,7 @@ private:
 	// Sets default values for this pawn's properties
 	ATank();
 
+	virtual void BeginPlay()override;
 	//local Barrel Reference for Spawning Projectiles
 	UTankBarrel* Barrel = nullptr; //TODO remove
 
