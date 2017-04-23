@@ -5,7 +5,7 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
-class ATank;
+class UTankTankAimingComponent;
 /**
  * 
  */
@@ -17,7 +17,7 @@ class BATTLETANK_API ATankAIController : public AAIController
 private:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
-	
+
 	virtual void BeginPlay() override;
 	
 	//How close can the ai tank get
