@@ -28,7 +28,6 @@ void ATank::AimAt(FVector HitLocation)
 {
 	if (!ensure(TankAimingComponent)) { return; }
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
-	UE_LOG(LogTemp, Warning, TEXT("IM here"))
 }
 
 
