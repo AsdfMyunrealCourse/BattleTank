@@ -26,6 +26,7 @@ void UTankAimingComponent::BeginPlay()
 }
 void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
+
 	if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
 	{
 		FiringState = EFiringState::Reloading;
@@ -84,9 +85,10 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 	}*/
 }
 
-void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
+void UTankAimingComponent::MoveBarrelTowards(FVector AimDirectionIn)
 {
 	if (!ensure(Barrel && Turret)) { return; }
+	AimDirection = AimDirectionIn;
 	// Work out difference between current barrel rotation and AimDirection
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
