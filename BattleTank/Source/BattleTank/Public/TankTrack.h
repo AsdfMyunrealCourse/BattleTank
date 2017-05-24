@@ -23,6 +23,8 @@ public:
 		float TrackMaxDrivingForce = 400000; //Assume 40t tank and 1g acceleration
 private:
 	UTankTrack();
-
+	UFUNCTION()
+		void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 };
