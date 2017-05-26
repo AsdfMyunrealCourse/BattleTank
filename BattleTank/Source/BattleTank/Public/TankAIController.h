@@ -21,5 +21,7 @@ private:
 	virtual void BeginPlay() override;
 	
 	//How close can the ai tank get
-	float AcceptanceRadius = 3000;
+protected:
+	UPROPERTY(EditAnywhere, Category = "Setup") //consider EditDefaultsOnly
+	float AcceptanceRadius = 8000;
 };
