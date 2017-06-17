@@ -11,7 +11,8 @@ enum class EFiringState : uint8
 {
 	Reloading, 
 	Aiming, 
-	Locked
+	Locked,
+	OutOfAmmo
 };
 // Forward Declaration
 class UTankBarrel; 
@@ -41,6 +42,8 @@ public:
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 		EFiringState FiringState = EFiringState::Reloading;
+	UPROPERTY(BlueprintReadOnly, Category = "Firing")
+		int AmmoAmount = 4;
 private:
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 	virtual void BeginPlay() override;
@@ -60,6 +63,8 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
+
+		
 
 	double LastFireTime = 0;
 };
