@@ -39,11 +39,13 @@ public:
 
 	EFiringState GetFiringState()const;
 
+	UFUNCTION(BluePrintCallable, Category = Firing)
+	int GetRoundsLeft()const;
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 		EFiringState FiringState = EFiringState::Reloading;
-	UPROPERTY(BlueprintReadOnly, Category = "Firing")
-		int AmmoAmount = 4;
+	
 private:
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 	virtual void BeginPlay() override;
@@ -64,7 +66,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
-		
+	int RoundsLeft = 4;
 
 	double LastFireTime = 0;
 };

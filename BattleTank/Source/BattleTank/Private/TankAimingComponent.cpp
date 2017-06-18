@@ -26,7 +26,7 @@ void UTankAimingComponent::BeginPlay()
 }
 void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
-	if (AmmoAmount < 1) 
+	if (RoundsLeft < 1) 
 	{ 
 		FiringState = EFiringState::OutOfAmmo; 
 	}
@@ -49,6 +49,11 @@ void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickTy
 EFiringState UTankAimingComponent::GetFiringState() const
 {
 	return FiringState;
+}
+
+int UTankAimingComponent::GetRoundsLeft() const
+{
+	return RoundsLeft;
 }
 
 void UTankAimingComponent::Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet)
@@ -102,12 +107,13 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirectionIn)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
+	//always yaw the shortest path
 	Barrel->Elevate(DeltaRotator.Pitch); 
 	if (FMath::Abs(DeltaRotator.Yaw)<180)
 	{
 		Turret->Rotate(DeltaRotator.Yaw);
 	}
-	else 
+	else // avoid going the long way
 	{ 
 		Turret->Rotate(-DeltaRotator.Yaw); 
 	}
@@ -135,8 +141,7 @@ void UTankAimingComponent::Fire()
 			Barrel->GetSocketRotation(FName("Projectile"))
 			);
 		Projectile->LaunchProjectile(LaunchSpeed);
-		AmmoAmount--;
-		UE_LOG(LogTemp, Warning, TEXT("Ammo set to %d"),AmmoAmount)
+		RoundsLeft--;
 		LastFireTime = FPlatformTime::Seconds();
 	}
 }
