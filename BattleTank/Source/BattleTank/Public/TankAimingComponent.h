@@ -40,7 +40,7 @@ public:
 	EFiringState GetFiringState()const;
 
 	UFUNCTION(BluePrintCallable, Category = Firing)
-	int GetRoundsLeft()const;
+	int32 GetRoundsLeft()const;
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
@@ -63,10 +63,13 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 		float ReloadTimeInSeconds = 3;
 
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		int32 RoundsLeft = 4;
+
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
-	int RoundsLeft = 4;
+	
 
 	double LastFireTime = 0;
 };
