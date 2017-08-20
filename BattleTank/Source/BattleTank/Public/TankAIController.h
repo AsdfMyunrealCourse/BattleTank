@@ -13,6 +13,8 @@ UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
+public:
+
 
 private:
 	// Called every frame
@@ -20,8 +22,12 @@ private:
 
 	virtual void BeginPlay() override;
 	
-	//How close can the ai tank get
+	virtual void SetPawn(APawn* InPawn) override;
+	
+	UFUNCTION()
+	void OnPossessedTankDeath();
 protected:
+	//How close can the ai tank get
 	UPROPERTY(EditAnywhere, Category = "Setup") //consider EditDefaultsOnly
 	float AcceptanceRadius = 8000;
 };
